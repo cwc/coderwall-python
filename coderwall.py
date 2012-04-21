@@ -115,8 +115,7 @@ def parse_json_data(json_data):
     name = data['name']
     location = data['location']
     endorsements = data['endorsements'] 
-    badges = data['badges'] # NOTE Not sure what is returned if user
-                            # has no badges
+    badges = data['badges']
 
     return (name, location, endorsements, badges)
 
