@@ -60,7 +60,7 @@ class CoderWall:
             raise NameError(self.username + ' does not appear to be a CoderWall user')
 
     def __repr__(self):
-        return self.__str__() # NOTE Does not conform to standards
+        return "CoderWall(username=%r)" % (self.username)
 
     def __str__(self): 
         return self.name + ' (' + self.username + '), ' + self.location + ', Endorsed ' + str(self.endorsements) + ' times: ' + str(self.badges)
@@ -84,7 +84,7 @@ class Badge:
         self.image_uri = image_uri
 
     def __repr__(self):
-        return self.__str__() # NOTE Does not conform to standards
+        return "Badge(name=%r,description=%r,image_uri=%r)" % (self.name, self.description, self.image_uri)
 
     def __str__(self):
         return self.name + ': ' + self.description

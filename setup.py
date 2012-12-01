@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
         name='coderwall',
-        version='1.0.0',
+        version='1.1.0',
         author='Cameron Currie',
         author_email='me@cameroncurrie.net',
         url='http://github.com/cwc/coderwall-python',
