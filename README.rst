@@ -5,6 +5,7 @@ coderwall
 A Python module for accessing user data at http://coderwall.com
 
 .. image:: https://api.travis-ci.org/cwc/coderwall-python.png
+    :target: http://travis-ci.org/cwc/coderwall-python
 
 Installation
 ------------
