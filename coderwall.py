@@ -7,8 +7,15 @@ See the CoderWall class for a usage example. The module can also be used as a
 standalone script (i.e. 'python -m coderwall').
 """
 
+import sys
 import json
-import urllib2
+
+# Handle differences in urllib imports
+if sys.version_info[0] >= 3:
+    import urllib.request as urllib_request, urllib.error as urllib_error
+else:
+    import urllib2 as urllib_request
+    urllib_error = urllib_request
 
 class CoderWall:
 
@@ -98,11 +105,11 @@ def get_json_data(username):
     api_url = 'http://coderwall.com/' + username + '.json'
 
     try:
-        response = urllib2.urlopen(api_url, None, 5)
-    except urllib2.URLError:
+        response = urllib_request.urlopen(api_url, None, 5)
+    except urllib_error.URLError:
         return '' # TODO Better error handling
 
-    return response.read()
+    return response.read().decode('utf-8')
 
 def parse_json_data(json_data):
     """ Parse the given JSON data and return data about the user. """
@@ -136,7 +143,7 @@ if __name__ == '__main__':
     import sys
 
     if len(sys.argv) < 2:
-        print 'Usage: ' + sys.argv[0] + ' USERNAME...'
+        print('Usage: ' + sys.argv[0] + ' USERNAME...')
     else:
         for username in sys.argv[1:]:
-            print CoderWall(username)
+            print(CoderWall(username))
