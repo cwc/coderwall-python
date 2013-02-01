@@ -7,7 +7,7 @@ setup(
         author_email='me@cameroncurrie.net',
         url='http://github.com/cwc/coderwall-python',
         description='A Python module for accessing user data at http://coderwall.com',
-        long_description=open('README.txt').read(),
+        long_description=open('README.rst').read(),
         license='MIT',
         classifiers=[
             'Programming Language :: Python',
