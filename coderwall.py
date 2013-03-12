@@ -17,7 +17,7 @@ else:
     import urllib2 as urllib_request
     urllib_error = urllib_request
 
-class CoderWall:
+class CoderWall(object):
 
     """
     Represents a CoderWall user and provides access to all of the user's data.
@@ -72,7 +72,7 @@ class CoderWall:
     def __str__(self): 
         return self.name + ' (' + self.username + '), ' + self.location + ', Endorsed ' + str(self.endorsements) + ' times: ' + str(self.badges)
 
-class Badge:
+class Badge(object):
 
     """
     Represents a CoderWall badge and provides access to its attributes, such as
