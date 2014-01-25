@@ -134,14 +134,12 @@ def parse_badges(raw_badges):
 
     badges = []
     for raw_badge in raw_badges:
-       badges.append(Badge(raw_badge['name'], 
+        badges.append(Badge(raw_badge['name'], 
             raw_badge['description'], raw_badge['badge']))
 
     return badges
 
 if __name__ == '__main__':
-    import sys
-
     if len(sys.argv) < 2:
         print('Usage: ' + sys.argv[0] + ' USERNAME...')
     else:
