@@ -13,10 +13,12 @@ import json
 
 # Handle differences in urllib imports
 if sys.version_info[0] >= 3:
-    import urllib.request as urllib_request, urllib.error as urllib_error
+    import urllib.request as urllib_request
+    import urllib.error as urllib_error
 else:
     import urllib2 as urllib_request
     urllib_error = urllib_request
+
 
 class CoderWall(object):
 
@@ -40,17 +42,17 @@ class CoderWall(object):
     >>> cwc.endorsements
     0
     >>> cwc.badges
-    [Charity: Fork and commit to someone's open source project in need, 
-    Python: Would you expect anything less? Have at least one original repo 
-    where Python is the dominant language, T-Rex: Have at least one original 
+    [Charity: Fork and commit to someone's open source project in need,
+    Python: Would you expect anything less? Have at least one original repo
+    where Python is the dominant language, T-Rex: Have at least one original
     repo where C is the dominant language]
     >>> cwc.badges[0].image_uri
     http://cdn.coderwall.com/assets/badges/charity-bf61e713137d910534ff805f389bcffb.png
     >>> print cwc
-    Cameron Currie (cwc), Austin, TX, Endorsed 0 times: [Charity: Fork and 
-    commit to someone's open source project in need, Python: Would you expect 
-    anything less? Have at least one original repo where Python is the dominant 
-    language, T-Rex: Have at least one original repo where C is the dominant 
+    Cameron Currie (cwc), Austin, TX, Endorsed 0 times: [Charity: Fork and
+    commit to someone's open source project in need, Python: Would you expect
+    anything less? Have at least one original repo where Python is the dominant
+    language, T-Rex: Have at least one original repo where C is the dominant
     language]
     """
 
@@ -65,13 +67,15 @@ class CoderWall(object):
             self.endorsements = data[2]
             self.badges = parse_badges(data[3])
         else:
-            raise NameError(self.username + ' does not appear to be a CoderWall user')
+            raise NameError(self.username +
+                            ' does not appear to be a CoderWall user')
 
     def __repr__(self):
         return "CoderWall(username=%r)" % (self.username)
 
-    def __str__(self): 
-        return self.name + ' (' + self.username + '), ' + self.location + ', Endorsed ' + str(self.endorsements) + ' times: ' + str(self.badges)
+    def __str__(self):
+        return '%s (%s), %s, Endorsed %s times: %s' % (self.name, self.username, self.location, str(self.endorsements), str(self.badges))
+
 
 class Badge(object):
 
@@ -84,8 +88,8 @@ class Badge(object):
     name
     description
     image_uri
-    """ 
-    
+    """
+
     def __init__(self, name, description, image_uri):
         self.name = name
         self.description = description
@@ -97,10 +101,11 @@ class Badge(object):
     def __str__(self):
         return self.name + ': ' + self.description
 
+
 def get_json_data(username):
     """
-    Connect to CoderWall and return the raw JSON data for the given 
-    username. 
+    Connect to CoderWall and return the raw JSON data for the given
+    username.
     """
 
     api_url = 'http://coderwall.com/' + username + '.json'
@@ -108,9 +113,10 @@ def get_json_data(username):
     try:
         response = urllib_request.urlopen(api_url, None, 5)
     except urllib_error.URLError:
-        return '' # TODO Better error handling
+        return ''  # TODO Better error handling
 
     return response.read().decode('utf-8')
+
 
 def parse_json_data(json_data):
     """ Parse the given JSON data and return data about the user. """
@@ -118,27 +124,32 @@ def parse_json_data(json_data):
     try:
         data = json.loads(json_data)
     except ValueError:
-        return None # TODO Better error handling
+        return None  # TODO Better error handling
 
     name = data['name']
     location = data['location']
-    endorsements = data['endorsements'] 
+    endorsements = data['endorsements']
     badges = data['badges']
 
     return (name, location, endorsements, badges)
 
+
 def parse_badges(raw_badges):
     """
-    Parse the given list of dictionaries, interpret each as a 
+    Parse the given list of dictionaries, interpret each as a
     CoderWall badge, and return a list of Badge objects.
     """
 
     badges = []
     for raw_badge in raw_badges:
-        badges.append(Badge(raw_badge['name'], 
-            raw_badge['description'], raw_badge['badge']))
+        badges.append(Badge(
+            raw_badge['name'],
+            raw_badge['description'],
+            raw_badge['badge']
+        ))
 
     return badges
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
