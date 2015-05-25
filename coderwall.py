@@ -142,7 +142,7 @@ def parse_badges(raw_badges):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print('Usage: ' + sys.argv[0] + ' USERNAME...')
+        print('Usage: ' + sys.argv[0] + ' <username> [username ...]')
     else:
         for username in sys.argv[1:]:
             print(CoderWall(username))
