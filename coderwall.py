@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 This module provides a simple interface to the API at http://coderwall.com.
 
