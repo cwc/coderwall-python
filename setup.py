@@ -17,12 +17,17 @@ setup(
             'Programming Language :: Python :: 3',
             'Programming Language :: Python :: 3.2',
             'Programming Language :: Python :: 3.3',
+            'Programming Language :: Python :: 3.4',
             'Programming Language :: Python :: Implementation :: PyPy',
-            'Development Status :: 5 - Production/Stable',
+            'Development Status :: 6 - Mature',
             'License :: OSI Approved :: MIT License',
             'Operating System :: OS Independent',
             'Intended Audience :: Developers',
-            'Topic :: Software Development :: Libraries :: Python Modules'
+            'Topic :: Software Development :: Libraries :: Python Modules',
+            'Topic :: Internet',
+            'Topic :: Internet :: WWW/HTTP',
+            'Environment :: Console',
+            'Environment :: Web Environment'
         ],
         py_modules=['coderwall']
 )
